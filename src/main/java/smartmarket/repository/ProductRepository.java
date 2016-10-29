@@ -1,5 +1,7 @@
 package smartmarket.repository;
 
+import org.springframework.data.domain.Page;
+import smartmarket.domain.Market;
 import smartmarket.domain.Product;
 
 import org.springframework.data.jpa.repository.*;
@@ -11,5 +13,5 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface ProductRepository extends JpaRepository<Product,Long> {
-
+    public List<Product> findByMarket(Market market);
 }

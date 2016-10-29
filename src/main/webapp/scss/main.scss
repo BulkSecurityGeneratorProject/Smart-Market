@@ -387,7 +387,9 @@ Social button
 /* jhipster-needle-scss-add-main JHipster will add new css style */
 
 
-
+.padding-bottom-lg{
+    padding-bottom: 50px;
+}
 
 
 /* BARCODE */
@@ -398,7 +400,7 @@ Social button
         padding-top: 10px;
         width: 640px;
         height: 480px;
-        margin-left: calc(50% - 320px); 
+        margin-left: calc(50% - 320px);
     }
 
     .btn-camera{

@@ -3,26 +3,24 @@
 
     angular
         .module('smartmarketApp')
-        .controller('MarketDialogController', MarketDialogController);
+        .controller('ProductListController', ProductListController);
 
-    MarketDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Market', 'User'];
+    ProductListController.$inject = ['$timeout', '$scope', 'entity', 'Market', 'ParseLinks'];
 
-    function MarketDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Market, User) {
+    function ProductListController ($timeout, $scope, entity, Market, ParseLinks) {
         var vm = this;
 
         vm.market = entity;
-        vm.clear = clear;
+        vm.products = [];
         vm.save = save;
-        vm.users = User.query();
-        
+
+        Market.product({id: entity.id}, function(data) {
+            vm.products = data;
+        });
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
-
-        function clear () {
-            $uibModalInstance.dismiss('cancel');
-        }
 
         function save () {
             vm.isSaving = true;
@@ -35,7 +33,6 @@
 
         function onSaveSuccess (result) {
             $scope.$emit('smartmarketApp:marketUpdate', result);
-            $uibModalInstance.close(result);
             vm.isSaving = false;
         }
 

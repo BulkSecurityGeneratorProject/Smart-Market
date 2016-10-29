@@ -1,5 +1,6 @@
 package smartmarket.service;
 
+import smartmarket.domain.Market;
 import smartmarket.domain.Product;
 import smartmarket.repository.ProductRepository;
 import org.slf4j.Logger;
@@ -20,7 +21,7 @@ import java.util.List;
 public class ProductService {
 
     private final Logger log = LoggerFactory.getLogger(ProductService.class);
-    
+
     @Inject
     private ProductRepository productRepository;
 
@@ -38,14 +39,26 @@ public class ProductService {
 
     /**
      *  Get all the products.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Product> findAll(Pageable pageable) {
         log.debug("Request to get all Products");
         Page<Product> result = productRepository.findAll(pageable);
+        return result;
+    }
+    /**
+     *  Get all the products.
+     *
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<Product> findByMarket(Market market) {
+        log.debug("Request to get all Products");
+        List<Product> result = productRepository.findByMarket(market);
         return result;
     }
 
@@ -55,7 +68,7 @@ public class ProductService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Product findOne(Long id) {
         log.debug("Request to get Product : {}", id);
         Product product = productRepository.findOne(id);

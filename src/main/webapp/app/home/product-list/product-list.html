@@ -1,0 +1,24 @@
+<div class="product-list">
+    <div class="search-area">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Search for product code" ng-model="vm.search">
+        </div>
+        <barcode-reader code="vm.search" class="col-md-6"></barcode-reader>
+    </div>
+    <div class="clearfix padding-bottom-lg"></div>
+    <div class="col-sm-6 col-md-4" ng-repeat="product in vm.products">
+        <div class="thumbnail">
+            <div class="caption">
+                <a ui-sref="product-detail({id:product.id})">
+                    <h3>{{product.name}}</h3>
+                </a>
+                <p>{{product.description}}</p>
+                <b>{{product.price | currency: "R$ "}}</b>
+                <div class="text-center">
+                    <button class="btn btn-primary" ng-click="vm.addToCard();">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

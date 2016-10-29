@@ -2,7 +2,9 @@ package smartmarket.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import smartmarket.domain.Market;
+import smartmarket.domain.Product;
 import smartmarket.service.MarketService;
+import smartmarket.service.ProductService;
 import smartmarket.web.rest.util.HeaderUtil;
 import smartmarket.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -30,9 +32,11 @@ import java.util.Optional;
 public class MarketResource {
 
     private final Logger log = LoggerFactory.getLogger(MarketResource.class);
-        
+
     @Inject
     private MarketService marketService;
+    @Inject
+    private ProductService productService;
 
     /**
      * POST  /markets : Create a new market.
@@ -113,6 +117,26 @@ public class MarketResource {
         log.debug("REST request to get Market : {}", id);
         Market market = marketService.findOne(id);
         return Optional.ofNullable(market)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    /**
+     * GET  /markets/:id/product : get the "id" market and search for related products.
+     *
+     * @param id the id of the market to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the market, or with status 404 (Not Found)
+     */
+    @RequestMapping(value = "/markets/{id}/products",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Product>> getProductByMarket(@PathVariable Long id) {
+        log.debug("REST request to get Product by Market : {}", id);
+        Market market = marketService.findOne(id);
+        return Optional.ofNullable(productService.findByMarket(market))
             .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))

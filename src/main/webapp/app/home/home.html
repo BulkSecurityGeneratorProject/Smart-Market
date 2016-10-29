@@ -1,9 +1,10 @@
 <div ng-cloak>
     <div class="row">
+        <h3>Select a Market</h3>
+        <button class="btn btn-default col-md-3" ng-repeat="market in vm.markets" ui-sref="home-market({id:market.id})" >{{market.name}}</button>
+        <div class="clearfix"></div>
 
-
-
-<p>User info:</p>
-<pre>{{vm.account | json}}</pre>
+        <h3>User info:</h3>
+        <pre>{{vm.account | json}}</pre>
     </div>
 </div>

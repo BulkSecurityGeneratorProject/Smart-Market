@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span>Market</span> {{vm.market.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{vm.market.name}}</span>
+        </dd>
+        <dt><span>Cnpj</span></dt>
+        <dd>
+            <span>{{vm.market.cnpj}}</span>
+        </dd>
+        <dt><span>Street</span></dt>
+        <dd>
+            <span>{{vm.market.street}}</span>
+        </dd>
+        <dt><span>Number</span></dt>
+        <dd>
+            <span>{{vm.market.number}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{vm.market.user.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="market-detail.edit({id:vm.market.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

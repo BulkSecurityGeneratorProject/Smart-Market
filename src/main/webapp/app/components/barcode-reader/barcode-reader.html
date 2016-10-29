@@ -1,0 +1,12 @@
+<div class="barcode-wrapper">
+	<div class="btn btn-camera col-sm-12" ng-click="use();" ng-show="!showLive">
+		<span class="glyphicon glyphicon-camera"></span> Use camera
+	</div>
+	<div class="btn btn-default col-sm-12" ng-click="close();" ng-show="showLive">
+		<span class="glyphicon glyphicon-remove"></span> Cancel
+	</div>
+	<br>
+	<div class="barcode-live viewport" ng-show="showLive" id="interactive">
+
+	</div>
+</div>

@@ -78,6 +78,9 @@
                     inputStream: {
                         name: "Live",
                         type: "LiveStream",
+                        constraints: {
+                            facing: "environment" // or user
+                        },
                         target: document.querySelector('#interactive') // Or '#yourElement' (optional)
                     },
                     decoder: {

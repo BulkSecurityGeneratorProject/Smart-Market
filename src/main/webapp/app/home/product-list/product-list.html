@@ -1,4 +1,5 @@
 <div class="product-list">
+    <h3>Select the products</h3>
     <div class="search-area">
         <div class="col-md-6">
             <input type="text" class="form-control" placeholder="Search for product code" ng-model="vm.search">
@@ -6,7 +7,7 @@
         <barcode-reader code="vm.search" class="col-md-6"></barcode-reader>
     </div>
     <div class="clearfix padding-bottom-lg"></div>
-    <div class="col-sm-6 col-md-4" ng-repeat="product in vm.products">
+    <div class="col-sm-6 col-md-4" ng-repeat="prodyuct in vm.products | filter: { code : vm.search}">
         <div class="thumbnail">
             <div class="caption">
                 <a ui-sref="product-detail({id:product.id})">

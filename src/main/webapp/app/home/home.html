@@ -1,7 +1,12 @@
 <div ng-cloak>
     <div class="row">
         <h3>Select a Market</h3>
-        <button class="btn btn-default col-md-3" ng-repeat="market in vm.markets" ui-sref="home-market({id:market.id})" >{{market.name}}</button>
+        <div class="search-area">
+            <input type="text" class="form-control" placeholder="Search for market name" ng-model="vm.search">
+        </div>
+        <button class="btn btn-default col-md-3" ng-repeat="market in vm.markets | filter: { name : vm.search}" ui-sref="home-market({id:market.id})" >
+            {{market.name}}
+        </button>
         <div class="clearfix"></div>
 
         <h3>User info:</h3>

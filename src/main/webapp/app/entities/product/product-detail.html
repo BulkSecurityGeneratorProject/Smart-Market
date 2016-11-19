@@ -28,6 +28,12 @@
         <dd>
             <a ui-sref="market-detail({id:vm.product.market.id})">{{vm.product.market.name}}</a>
         </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <span ng-repeat="category in vm.product.categories">
+                <a ui-sref="category-detail({id: category.id})">{{category.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
 
     <button type="submit"

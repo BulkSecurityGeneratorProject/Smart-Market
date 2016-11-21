@@ -10,7 +10,7 @@
     function stateConfig($stateProvider) {
         $stateProvider.state('home-market', {
             parent: 'entity',
-            url: '/{id}',
+            url: '/product-list/{id}',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'Market'

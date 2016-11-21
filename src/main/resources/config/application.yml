@@ -78,7 +78,7 @@ jhipster:
         #allow-credentials: true
         #max-age: 1800
     mail:
-        from: smartmarket@localhost
+        from: smart.market.anhembi@gmail.com
     swagger:
         title: smartmarket API
         description: smartmarket API documentation

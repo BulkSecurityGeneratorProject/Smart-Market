@@ -5,14 +5,15 @@
         .module('smartmarketApp')
         .controller('CategoryDialogController', CategoryDialogController);
 
-    CategoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Category'];
+    CategoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Category', 'Product'];
 
-    function CategoryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Category) {
+    function CategoryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Category, Product) {
         var vm = this;
 
         vm.category = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.products = Product.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

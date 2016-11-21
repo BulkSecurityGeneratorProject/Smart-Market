@@ -5,9 +5,9 @@
         .module('smartmarketApp')
         .controller('CategoryDetailController', CategoryDetailController);
 
-    CategoryDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Category'];
+    CategoryDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Category', 'Product'];
 
-    function CategoryDetailController($scope, $rootScope, $stateParams, previousState, entity, Category) {
+    function CategoryDetailController($scope, $rootScope, $stateParams, previousState, entity, Category, Product) {
         var vm = this;
 
         vm.category = entity;

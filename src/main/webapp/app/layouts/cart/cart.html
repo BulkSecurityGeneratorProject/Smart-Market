@@ -1,0 +1,21 @@
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="cart in vm.cart.get()">
+            <td>{{cart.item.name}}</td>
+            <td>{{cart.quantity}}</td>
+            <td><button class="btn btn-primary" ng-click="vm.cart.remove($index)"><i class="glyphicon glyphicon-remove"></i></button></td>
+        </tr>
+        <tr >
+            <td colspan="3" class="text-center" ng-if="vm.cart.get().length == 0">No product added</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

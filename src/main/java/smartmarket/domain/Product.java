@@ -6,6 +6,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -42,6 +44,14 @@ public class Product implements Serializable {
 
     @ManyToOne
     private Market market;
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @NotNull
+    @JoinTable(name = "product_category",
+               joinColumns = @JoinColumn(name="products_id", referencedColumnName="ID"),
+               inverseJoinColumns = @JoinColumn(name="categories_id", referencedColumnName="ID"))
+    private Set<Category> categories = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -127,6 +137,31 @@ public class Product implements Serializable {
 
     public void setMarket(Market market) {
         this.market = market;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public Product categories(Set<Category> categories) {
+        this.categories = categories;
+        return this;
+    }
+
+    public Product addCategory(Category category) {
+        categories.add(category);
+        category.getProducts().add(this);
+        return this;
+    }
+
+    public Product removeCategory(Category category) {
+        categories.remove(category);
+        category.getProducts().remove(this);
+        return this;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     @Override

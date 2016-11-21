@@ -58,5 +58,13 @@
         timeToLiveSeconds="3600">
     </cache>
 
+    <cache name="smartmarket.domain.Product.categories"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="smartmarket.domain.Category.products"
+        timeToLiveSeconds="3600">
+    </cache>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </ehcache>

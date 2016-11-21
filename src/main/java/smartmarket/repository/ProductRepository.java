@@ -1,10 +1,10 @@
 package smartmarket.repository;
 
-import org.springframework.data.domain.Page;
 import smartmarket.domain.Market;
 import smartmarket.domain.Product;
 
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -13,5 +13,13 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface ProductRepository extends JpaRepository<Product,Long> {
-    public List<Product> findByMarket(Market market);
+
+    @Query("select distinct product from Product product left join fetch product.categories")
+    List<Product> findAllWithEagerRelationships();
+
+    @Query("select product from Product product left join fetch product.categories where product.id =:id")
+    Product findOneWithEagerRelationships(@Param("id") Long id);
+
+    List<Product> findByMarket(Market market);
+
 }

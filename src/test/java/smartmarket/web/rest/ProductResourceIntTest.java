@@ -3,6 +3,7 @@ package smartmarket.web.rest;
 import smartmarket.SmartmarketApp;
 
 import smartmarket.domain.Product;
+import smartmarket.domain.Category;
 import smartmarket.repository.ProductRepository;
 import smartmarket.service.ProductService;
 
@@ -96,6 +97,11 @@ public class ProductResourceIntTest {
                 .code(DEFAULT_CODE)
                 .weight(DEFAULT_WEIGHT)
                 .description(DEFAULT_DESCRIPTION);
+        // Add required entity
+        Category category = CategoryResourceIntTest.createEntity(em);
+        em.persist(category);
+        em.flush();
+        product.getCategories().add(category);
         return product;
     }
 

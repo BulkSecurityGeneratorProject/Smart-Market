@@ -71,7 +71,7 @@ public class ProductService {
     @Transactional(readOnly = true)
     public Product findOne(Long id) {
         log.debug("Request to get Product : {}", id);
-        Product product = productRepository.findOne(id);
+        Product product = productRepository.findOneWithEagerRelationships(id);
         return product;
     }
 

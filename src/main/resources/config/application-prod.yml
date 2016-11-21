@@ -22,7 +22,7 @@ spring:
         url: jdbc:mysql://nr84dudlpkazpylz.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/qstflkfwazqnyvx8?useUnicode=true&characterEncoding=utf8&useSSL=false
         name:
         username: bcgqwlyqtma7oygx
-        password: v4cdu77x2svu9lxv 
+        password: v4cdu77x2svu9lxv
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -38,14 +38,20 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.gmail.com
+        port: 587
+        username: smart.market.anhembi@gmail.com
+        password: 2016smart
+        protocol: smtp
+        tls: true
+    properties.mail.smtp:
+        auth: true
+        starttls.enable: true
+        ssl.trust: smtp.gmail.com
     thymeleaf:
         cache: true
-
 liquibase:
     contexts: prod
 
@@ -72,8 +78,8 @@ jhipster:
         rememberMe:
             # security key (this key should be unique for your application, and kept secret)
             key: f5a133d8379128553279233e0ee9408bc1b8499a
-    mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: smartmarket@localhost
+    mail:
+        from: smart.market.anhembi@gmail.com
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:
